@@ -72,6 +72,14 @@ void topit::extend(p_t ** pts, size_t & s, p_t fill) {
     ++s;
     *pts = r;
 }
+void topit::append(const IDraw * sh, p_t ** ppts, size_t & s) {
+    extend(ppts, s, sh->begin());
+    p_t b = sh->begin();
+    while (sh->next(b) != sh->begin()) {
+        b = sh->next(b);
+        extend(ppts, s, b);
+    }
+}
 void topit::paint(p_t p, char * cnv, f_t fr, char fill) {
     size_t dx = p.x - fr.aa.x;
     size_t dy = fr.bb.y - p.y;
