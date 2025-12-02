@@ -1,8 +1,3 @@
-#include <iostream>
-namespace topit {
-  struct p_t {
-    int x, y;
-  };
 # include <iostream>
 namespace topit {
   struct p_t {
@@ -13,6 +8,11 @@ struct f_t {
 };
   bool operator==(p_t a, p_t b);
   bool operator!=(p_t a, p_t b);
+struct IDraw {
+    virtual ~IDraw() = default;
+    virtual p_t begin() const = 0;
+    virtual p_t next(p_t prev) const = 0;
+};
 }
 int main() {
     using namespace topit;
