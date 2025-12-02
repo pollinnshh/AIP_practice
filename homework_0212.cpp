@@ -28,8 +28,8 @@ namespace topit {
       p_t d;
   };
 
-  struct Horizontal: IDraw {
-      Horizontal(p_t start, p_t end);
+  struct HSeg: IDraw {
+      HSeg(p_t start, p_t end);
       p_t begin() const override;
       p_t next(p_t prev) const override;
       p_t s;
@@ -53,7 +53,7 @@ int main()
     p_t * pts = nullptr;
     size_t s = 0;
     try {
-        shp[0] = new Horizontal({-4, 1}, {3, 1});
+        shp[0] = new HSeg({-4, 1}, {3, 1});
         shp[1] = new Dot({2, 3});
         shp[2] = new Dot({-5, -2});
         for (size_t i = 0; i < 3; ++i) {
@@ -76,16 +76,16 @@ int main()
     return err;
 }
 
-topit::Horizontal::Horizontal(p_t start, p_t end): s{start}, e{end} {
+topit::HSeg::HSeg(p_t start, p_t end): s{start}, e{end} {
     if (end.y != start.y) {
         throw std::logic_error("Y coordinate error");
     }
 }
-topit::p_t topit::Horizontal::begin() const {
+topit::p_t topit::HSeg::begin() const {
     return s;
 }
 
-topit::p_t topit::Horizontal::next(p_t prev) const {
+topit::p_t topit::HSeg::next(p_t prev) const {
     if (prev == e) {
         return s;
     }
