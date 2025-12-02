@@ -1,36 +1,41 @@
-# include <iostream>
+#include <iostream>
 namespace topit {
-struct p_t {
-      int x, y;
+struct p_t
+{
+  int x, y;
 };
-struct f_t {
-    p_t aa, bb;
+struct f_t
+{
+  p_t aa, bb;
 };
 size_t rows(f_t fr);
-size_ t cols(f_t fr):
+size_t cols(f_t fr);
 
 bool operator==(p_t a, p_t b);
 bool operator!=(p_t a, p_t b);
-struct IDraw {
-    virtual ~IDraw() = default;
-    virtual p_t begin() const = 0;
-    virtual p_t next(p_t prev) const = 0;
+struct IDraw
+{
+  virtual ~IDraw() = default;
+  virtual p_t begin() const = 0;
+  virtual p_t next(p_t prev) const = 0;
 };
-struct Dot: IDraw {
-    explicit Dot(p_t dd);
-    p_t begin() const override;
-    p_t next(p_t prev) const override;
-    p_t d;
+struct Dot: IDraw
+{
+  explicit Dot(p_t dd);
+  p_t begin() const override;
+  p_t next(p_t prev) const override;
+  p_t d;
 };
 p_t * extend(const p_t * pts, size_t s, p_t fill);
 void extend(p_t ** pts, size_t & s, p_t fill);
 void append(const IDraw * sh, p_t ** ppts, size_t & s);
 f_t frame(const p_t * pts, size_t);
-char * canvas(f_t fr);
+char * canvas(f_t fr, char fill);
 void paint(p_t p, char * cnv, f_t fr, char fill);
 void flush(std::ostream & os, const char * cnv, f_t fr);
 }
-int main() {
+int main()
+{
     using namespace topit;
     int err = 0;
     IDraw * shp[3] = {};
@@ -44,13 +49,14 @@ int main() {
             append(shp[i], &pts, s);
         }
         f_t fr = frame(pts, s);
-        char * cnv = canvas(fr);
+        char * cnv = canvas(fr, '.');
         for (size_t i = 0; i < s; ++i) {
             paint(pts[i], cnv, fr, '#');
+        }
         flush(std::cout, cnv, fr);
         delete [] cnv;
     } catch (...) {
-        std::cerr << "Error!\n";
+        std::cerr << "Error\n";
         err = 1;
     }
     delete shp[0];
