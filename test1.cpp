@@ -26,6 +26,13 @@ struct Dot: IDraw
   p_t next(p_t prev) const override;
   p_t d;
 };
+struct Rect: IDraw {
+    Rect(p_t pos, int w, int h);
+    Rect(p_t a, p_t b);
+    p_t begin() const override;
+    p_t next(p_t prev) const override;
+    f_t rect;
+};
 p_t * extend(const p_t * pts, size_t s, p_t fill);
 void extend(p_t ** pts, size_t & s, p_t fill);
 void append(const IDraw * sh, p_t ** ppts, size_t & s);
