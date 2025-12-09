@@ -130,6 +130,19 @@ topit::f_t topit::frame(const p_t * pts, size_t s) {
     return f_t{a, b};
 }
 
+topit::Rect::Rect(p_t pos, int w, int h):
+IDraw(),
+rect{pos, {pos.x + w, pos.y + h}}
+{
+    if (!(w > 0 && h > 0)) {
+        throw std::logic_error("bad rect");
+    }
+}
+topit::Rect::Rect(p_t a, p_t b):    //делегированный конструктор
+Rect(a, b.x - a.x, b.y - a.y)
+{}
+
+
 topit::Dot::Dot(p_t dd):
  IDraw(),
  d{dd}
