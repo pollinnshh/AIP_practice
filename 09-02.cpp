@@ -22,7 +22,6 @@ void insert(int** a; size_t s; size_t i; int v)
     delete[] tmp;
 };
 
-
 // 2 (убрать элемент из заданной позиции)
 
 int* erase(const int* a, size_t s, size_t i)
@@ -81,4 +80,37 @@ void erase(int** a, size_t s, size_t i)
     return s - 1;
 };
 
+// 3.2 remove-erase (убрать элементы равные заданному и обрезать массив)
 
+int* remove(int* a, size_t s, int v)
+{};
+
+int* cut(const int* a, sie_t s)
+{};
+
+void erase(int** a, size_t s, int v)
+{}
+
+################## 2 часть #####################
+
+// 1
+
+void add(size_t n, size_t m, int* a, const int* b)
+{
+    for (size_t i = 0; i < (m * n); ++i)
+    {
+        a[i] += b[i];
+    }
+};
+
+void sum(size_t n, size_t m, int* c, const int* a, const int* b)
+{
+    int* c = new int[n + m];
+    sum(n, m, c, a, b);
+    return c;
+}
+
+int* sum(size_t n, size_t m, const int* a, const int* b)
+{
+    
+}
