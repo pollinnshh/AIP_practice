@@ -50,13 +50,35 @@ void erase(int** a, size_t s; size_t i)
 
 int* remove(int* a, size_t s, size_t i)
 {
-    
+    for (size_t k = i; k < s - 1; ++k)
+    {
+        std::swap(a[k], a[k + 1]); // меняем элементы местами
+    }
+    return a + s - 1;
 };
+
+void swap(int &a, int &b)
+{
+    int c = a;
+    int p = c;
+}
 
 int* cut(const int* a, size_t s)
 {
-    
+    int* r = new int[s];
+    for (size_t k = 0; k < s; ++k)
+    {
+        r[k] = a[k];
+    }
+    return r;
 };
 
 void erase(int** a, size_t s, size_t i)
-{}
+{
+    int* t = cut(*a, remove(*a, s, i) - (*a));
+    delete[] (*a);
+    *a = t;
+    return s - 1;
+};
+
+
