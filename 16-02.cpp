@@ -58,3 +58,41 @@ void reverse(const T* a, size_t s)
     a = std::move(b);
     b = std::move(tmp);
 }
+
+
+// 3.1 remove (убрать элементы равные заданному)
+
+template< class T >
+void remove (T* a, size_t s, size_t id)
+{
+    for (size_t k = id; k < s - 1; ++k)
+    {
+        std::swap(a[k], a[k + 1]);
+    }
+}
+
+template< class T >
+T* remove (T* a, size_t s, T v)
+{
+    size_t id = 0;
+    while (id != s)
+    {
+        if (a[id] == v)  // T::operator == (T)
+        {
+            remove(a, s--, id);
+        }
+        else
+        {
+            ++id;
+        }
+    }
+    return a + s;
+}
+
+
+// 4.1 перенос элементов (перенести указанный элемент массива в другой массив на указанную позицию)
+// с ходу такое писать в шаблоны НЕЛЬЗЯ!
+
+
+// 4.2 перенести казанный элемент массива в другой массив на указанную позицию (сделать новые)
+// это проще, но не рационально
