@@ -196,3 +196,27 @@ template< class T > void clear(List< List< T >* >* h) {
     }
     clear< List< T >* >(h);
 }
+
+// 4 (вектор списков)
+
+template< class T > sruct Vect {
+    T* data; size_t size;
+};
+template< class T > struct List {
+    T val; List< T >* next;
+};
+
+template< class T > void clear(Vec< List< T >* > v) {
+    for (size_t k = 0; k < v.size; ++k) {
+        clear< T >(v.data[k]);
+    }
+    delete[] v.data;
+}
+
+template< class T > size_t size(Vec< List< T >* > v) {
+    size_t c = 0;
+    for (size_t k = 0; k < v.size; ++k) {
+        c += size< T >(v.data[k]);
+    }
+    return c;
+}
