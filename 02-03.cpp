@@ -100,3 +100,29 @@ template< class T > bool hasNext(ListIt< T > it)
 {
     return it.curr;
 }
+
+// 4 (односвязный список указателей)
+
+template< class T > ListIt< T* > begin(List< T* > *h)
+{
+    while (h) {
+        if (h -> val) return {h};
+        h = h -> next;
+    }
+    return {h};  // тут h всегда равно nullptr
+}
+
+template< class T > ListIt< T* > next(ListIt< T* > it)
+{
+    return begin(it.curr -> next);
+}
+
+template< class T > T& value(ListIt< T* > it)
+{
+    return *(it.curr -> val);
+}
+
+template< class T > bool hasNext(ListIt< T* > it)
+{
+    return it.curr;
+}
