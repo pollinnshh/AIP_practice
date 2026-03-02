@@ -177,3 +177,22 @@ template< class T > void clear(List< T* >* h) {
         h = n;
     }
 }
+
+// 3 (односвязный список односвязных списков)
+
+template< class T > struct List {
+    T val;
+    List< T >* next;
+};
+
+template< class T > size_t size(const List< const List< T >* >* h) {
+    
+}
+
+template< class T > void clear(List< List< T >* >* h) {
+    while (h) {
+        clear< T >(h -> val);
+        h = h -> next;
+    }
+    clear< List< T >* >(h);
+}
