@@ -126,3 +126,54 @@ template< class T > bool hasNext(ListIt< T* > it)
 {
     return it.curr;
 }
+
+#################################2 часть#############################
+
+// 1 (кр)
+
+template< class T > struct List {
+    T val;
+    List< T >* next;
+};
+
+template< class T > size_t size(const List< T >* h) {
+    size_t c = 0;
+    while (h) {
+        ++c;
+        h = h -> next;
+    }
+    return c;
+}
+
+template< class T > void clear(List< T >* h) {
+    while (h) {
+        List< T >* n = h -> next;
+        delete h;
+        h = n;
+    }
+}
+
+// 2 (односвязный список указателей)
+
+template< class T > struct List {
+    T val;
+    List< T >* next;
+};
+
+template< class T > size_t size(const List< T* >* h) {
+    size_t c = 0;
+    while (h) {
+        c += h -> val?1:0;
+        h = h -> next;
+    }
+    return c;
+}
+
+template< class T > void clear(List< T* >* h) {
+    while (h) {
+        List< T >* n = h -> next;
+        delete h -> val;
+        delete h;
+        h = n;
+    }
+}
