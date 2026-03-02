@@ -1,29 +1,29 @@
-// 1 (реализовать однонапрвленные итераторы)
+// 1 (реализовать однонаправленные итераторы)
 
 template< class T > sruct Vect {
     T* data; size_t s;
 };
 template< class T > sruct VecIt {
-    T* data; size_t i, s;
+    T* data, *end;
 };
 
 template< class T > VecIt< T > begin(VecIt< T > it)
 {
-    return {v.data, 0, v.s};
+    return {v.data, v.data + v.s};
 }
 
 template< class T > VecIt< T > next(VecIt< T > it)
 {
-    1 + it.i;
+    ++it.data;
     return it;
 }
 
 template< class T > bool hasNext(VecIt< T > it)
 {
-    return it.i < it.s;
+    return it.data < it.end;
 }
 
 template< class T > T& value(VecIt< T > it)
 {
-    return it.data[it.i];
+    return *(it.data);
 }
