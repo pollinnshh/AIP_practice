@@ -50,8 +50,8 @@ int main()
     size_t s = 0;
     try {
         shp[0] = new Dot({0, 0});
-        shp[1] = new Rect({-1, -1},{5, 4});
-        shp[2] = new Dot({-5, -2});
+        shp[1] = new Rect({-1, -1}, {-5, -2});
+        shp[2] = new Dot({-5, -1});
         for (size_t i = 0; i < 3; ++i) {
             append(shp[i], &pts, s);
         }
@@ -152,7 +152,7 @@ topit::p_t topit::Rect::next(p_t prev) const {
         return {prev.x + 1, prev.y};
     } else if (prev.x == rect.bb.x && prev.y > rect.aa.y) {
         return {prev.x, prev.y - 1};
-    } else if (prev.y == rect.aa.y && prev.y > rect.aa.x) {
+    } else if (prev.y == rect.aa.y && prev.x > rect.aa.x) {
         return {prev.x - 1, prev.y};
     }
     throw std::logic_error("bad impl");
