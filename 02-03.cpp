@@ -71,4 +71,32 @@ template< class T > VecIt< T > prev(VecIt< T > it)
     return it;
 }
 
+// 3 (односвязный список)
 
+template< class T > sruct List {
+    T val; List< T >* next;
+};
+template< class T > sruct ListIt {
+    List< T >* curr;
+};
+
+template< class T > ListIt< T > begin(List< T >* h)
+{
+    return {h};
+}
+
+template< class T > ListIt< T > next(ListIt< T > it)
+{
+    it.curr = it.curr -> next;
+    return it;
+}
+
+template< class T > T& value(ListIt< T > it)
+{
+    return it.curr -> val;
+}
+
+template< class T > bool hasNext(ListIt< T > it)
+{
+    return it.curr;
+}
