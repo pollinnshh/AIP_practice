@@ -58,3 +58,17 @@ template< class T > T& value(VecIt< T > it)
     return it.data[it.i - 1];
 }
 
+################для двунаправленных#####################
+
+template< class T > bool hasPrev(VecIt< T > it)
+{
+    return it.i == it.s;
+}
+
+template< class T > VecIt< T > prev(VecIt< T > it)
+{
+    ++it.i;
+    return it;
+}
+
+
