@@ -27,3 +27,34 @@ template< class T > T& value(VecIt< T > it)
 {
     return *(it.data);
 }
+
+// 2 (однонаправленные обратные итераторы)
+
+template< class T > sruct Vect {
+    T* data; size_t s;
+};
+template< class T > sruct VecIt {
+    T* data, size_t i, s;
+};
+
+template< class T > VecIt< T > rbegin(VecIt< T > it)
+{
+    return {v.data, v.s, v.s};
+}
+
+template< class T > VecIt< T > next(VecIt< T > it)
+{
+    --it.i;
+    return it;
+}
+
+template< class T > bool hasNext(VecIt< T > it)
+{
+    return it.i;
+}
+
+template< class T > T& value(VecIt< T > it)
+{
+    return it.data[it.i - 1];
+}
+
